@@ -20,6 +20,6 @@ public class JoblistApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		this.jobRepository.save(new Job(
-				5, "Java Developer", "Google", "Atlanta, GA", "Looking for an entry/mid level Java Developer", true, "Completed 1st Interview"));
+				5, "Java Developer", "Google", "Atlanta, GA", "Looking for an entry/mid level Java Developer", "Yes", "Completed 1st Interview"));
 	}
 }

@@ -34,7 +34,7 @@ public class Job {
     private String description;
 
     @Column(name = "applied")
-    private Boolean applied;
+    private String applied;
 
     @Column(name = "status")
     private String status;
@@ -42,7 +42,7 @@ public class Job {
     public Job() {
     }
 
-    public Job(int rating, String job_title, String company, String location, String description, Boolean applied, String status) {
+    public Job(int rating, String job_title, String company, String location, String description, String applied, String status) {
         this.id = id;
         this.rating = rating;
         this.job_title = job_title;
@@ -93,11 +93,11 @@ public class Job {
         this.description = description;
     }
 
-    public Boolean getApplied() {
+    public String getApplied() {
         return applied;
     }
 
-    public void setApplied(Boolean applied) {
+    public void setApplied(String applied) {
         this.applied = applied;
     }
 
