@@ -10,7 +10,7 @@ class JobService {
     }
 
     createJob(job){
-        return axios.post(JOB_API_BASE_URL, employee)
+        return axios.post(JOB_API_BASE_URL, job)
     }
 
 }
