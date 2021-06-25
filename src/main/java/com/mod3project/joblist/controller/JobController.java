@@ -16,7 +16,9 @@ public class JobController {
     @Autowired
     private JobRepository jobRepository;
 
-    @GetMapping("jobs")
+
+//    get all jobs
+    @GetMapping("/jobs")
     public List<Job> getJob(){
         return this.jobRepository.findAll();
     }
