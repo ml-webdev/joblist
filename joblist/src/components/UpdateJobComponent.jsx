@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import JobService from '../services/JobService'
 
-export default class CreateJobComponent extends Component {
-
-
+export default class UpdateJobComponent extends Component {
     constructor(props){
         super(props)
 
@@ -25,41 +23,27 @@ export default class CreateJobComponent extends Component {
         this.changeDescriptionHandler = this.changeDescriptionHandler.bind(this)
         this.changeAppliedHandler = this.changeAppliedHandler.bind(this)
         this.changeStatusHandler = this.changeStatusHandler.bind(this)
-        this.saveJob = this.saveJob.bind(this)
+        this.updateJob = this.updateJob.bind(this)
     }
+
 
     componentDidMount(){
-     
-     
-        if(this.state.id == -1){
-            return
-        } else {
-            
-            JobService.getJobById(this.state.id).then( (response)  => {
-                let job = response.data
-                this.setState({rating: job.rating}, {job_title: job.job_title},
-                    {company: job.company}, {location: job.location}, {description: job.description}, {applied: job.applied}, {status: job.status})
-            })
-        }
+        JobService.getJobById(this.state.id).then( (response)  => {
+            let job = response.data
+            this.setState({rating: job.rating}, {job_title: job.job_title},
+                {company: job.company}, {location: job.location}, {description: job.description}, {applied: job.applied}, {status: job.status})
+        })
     }
 
-    saveJob = (e) => {
+    updateJob = (e) => {
         e.preventDefault()
 
         let job = {rating: this.state.rating, job_title: this.state.job_title, company: this.state.company, location: this.state.location, description: this.state.description, applied: this.state.applied, status: this.state.status}
         console.log('job =>' + JSON.stringify(job))
+        JobService.updateJob(job, this.state.id).then( response =>{
+            this.props.history.push('/jobs')
+        })
 
-        if(this.state.id == -1){
-            JobService.createJob(job).then(response => {
-                this.props.history.push('/jobs')
-            })
-        } else {
-            JobService.updateJob(job, this.state.id).then( response =>{
-                this.props.history.push('/jobs')
-            })
-        }
-
- 
     }
 
     changeRatingHandler = (event) => {
@@ -87,25 +71,13 @@ export default class CreateJobComponent extends Component {
     cancel(){
         this.props.history.push('/jobs')
     }
-
-    getTitle(){
-        if(this.state.id == -1){
-            return <h3 className="text-center">Add Job</h3>
- 
-        } else{
-           return <h3 className="text-center">Update Job</h3>
-        }
-    }
-
     render() {
         return (
             <div>
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            {
-                                this.getTitle()
-                            }
+                            <h3 className="text-center">Update Job</h3>
                             <div className="card-body">
                                 <form>
                                     <div className = "form-group">
@@ -137,7 +109,7 @@ export default class CreateJobComponent extends Component {
                                         <input placeholder="e.g. Awaiting Coding Assessment" name="status" className="form-control" value={this.state.status} onChange={this.changeStatusHandler}/>
                                     </div>
 
-                                    <button className="btn btn-success" onClick={this.saveJob}>Save</button>
+                                    <button className="btn btn-success" onClick={this.updateJob}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
 
                                 </form>

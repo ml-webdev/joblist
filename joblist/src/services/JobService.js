@@ -13,6 +13,13 @@ class JobService {
         return axios.post(JOB_API_BASE_URL, job)
     }
 
+    getJobById(JobId){
+        return axios.get(JOB_API_BASE_URL + "/" + JobId)
+    }
+
+    updateJob(job, JobId){
+        return axios.put(JOB_API_BASE_URL + "/" + JobId, job)
+    }
 }
 
 export default new JobService()

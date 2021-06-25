@@ -10,6 +10,11 @@ export default class JobListComponent extends Component {
             jobs: []
         }
         this.addJob = this.addJob.bind(this)
+        this.editJob = this.editJob.bind(this)
+    }
+
+    editJob(id){
+        this.props.history.push(`/add-job/${id}`)
     }
 
     componentDidMount(){
@@ -20,7 +25,7 @@ export default class JobListComponent extends Component {
 
     addJob(){
         // allows us to manually control the history of the broswer
-        this.props.history.push('/add-job')
+        this.props.history.push('/add-job/-1')
     }
 
     render() {
@@ -44,6 +49,8 @@ export default class JobListComponent extends Component {
                                 <th>Description</th>
                                 <th>Applied</th>
                                 <th>Status</th>
+                                <th>Actions</th>
+
                             </tr>
                         </thead>
                         {/* Table body */}
@@ -62,7 +69,10 @@ export default class JobListComponent extends Component {
                                             <td>{job.description}</td>
                                             <td>{job.applied}</td>
                                             <td>{job.status}</td>
-                                        
+                                            <td>
+                                                <button onClick = {() => this.editJob(job.id)} className="btn btn-info">Update</button>
+                                                <button style={{marginLeft: "10px"}} onClick={() => this.delete} className="btn btn-danger">Delete</button>
+                                            </td>
                                     </tr>
                                     )
                             }
