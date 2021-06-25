@@ -9,6 +9,10 @@ class JobService {
         return axios.get(JOB_API_BASE_URL)
     }
 
+    createJob(job){
+        return axios.post(JOB_API_BASE_URL, employee)
+    }
+
 }
 
 export default new JobService()
