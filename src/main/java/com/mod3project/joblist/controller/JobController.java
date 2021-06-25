@@ -3,9 +3,7 @@ package com.mod3project.joblist.controller;
 import com.mod3project.joblist.model.Job;
 import com.mod3project.joblist.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,11 @@ public class JobController {
     @GetMapping("/jobs")
     public List<Job> getJob(){
         return this.jobRepository.findAll();
+    }
+
+//    create job REST api
+    @PostMapping("/jobs")
+    public Job createJob(@RequestBody Job job){
+        return jobRepository.save(job);
     }
 }
