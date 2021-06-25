@@ -19,7 +19,7 @@ public class Job {
     private long id;
 
     @Column(name = "rating")
-    private int rating;
+    private double rating;
 
     @Column(name = "job_title")
     private String job_title;
@@ -42,7 +42,7 @@ public class Job {
     public Job() {
     }
 
-    public Job(int rating, String job_title, String company, String location, String description, String applied, String status) {
+    public Job(double rating, String job_title, String company, String location, String description, String applied, String status) {
         this.id = id;
         this.rating = rating;
         this.job_title = job_title;
@@ -53,11 +53,11 @@ public class Job {
         this.status = status;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
