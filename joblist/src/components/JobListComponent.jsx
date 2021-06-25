@@ -9,6 +9,7 @@ export default class JobListComponent extends Component {
         this.state = {
             jobs: []
         }
+        this.addJob = this.addJob.bind(this)
     }
 
     componentDidMount(){
@@ -17,10 +18,20 @@ export default class JobListComponent extends Component {
         })
     }
 
+    addJob(){
+        // allows us to manually control the history of the broswer
+        this.props.history.push('/add-job')
+    }
+
     render() {
         return (
             <div>
                 <h2 className="text-center">Jobs List</h2>
+                
+                <div className="row">
+                    <button className="btn btn-primary" onClick={this.addJob}>Add Job</button>
+                </div>
+                
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         {/* Labels for the table */}
