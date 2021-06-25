@@ -37,4 +37,39 @@ public class JobController {
                         "Job does not exist with id :" + id));
         return ResponseEntity.ok(job);
     }
+
+    @PutMapping("/jobs/{id}")
+//    Update Job REST API
+    public ResponseEntity<Job> updateJob(@PathVariable Long id, @RequestBody Job jobDetails){
+        Job job = jobRepository.
+                findById(id).orElseThrow(() -> new ResourceNotFoundException(
+                "Job does not exist with id :" + id));
+//        Rating
+        job.setRating(jobDetails.getRating());
+
+//        Job Title
+        job.setJob_title(jobDetails.getJob_title());
+
+//        Company
+        job.setCompany(jobDetails.getCompany());
+
+//        Location
+        job.setLocation(jobDetails.getLocation());
+
+//        Description
+        job.setDescription(jobDetails.getDescription());
+
+//        Applied
+        job.setApplied(jobDetails.getApplied());
+
+//        Status
+        job.setStatus(jobDetails.getStatus());
+
+        Job updatedJob = jobRepository.save(job);
+        return ResponseEntity.ok(updatedJob);
+    }
+
+
+
+
 }

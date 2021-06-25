@@ -54,7 +54,7 @@ public class Job {
     }
 
     public double getRating() {
-        return rating;
+        return this.rating;
     }
 
     public void setRating(double rating) {
@@ -62,7 +62,7 @@ public class Job {
     }
 
     public String getJob_title() {
-        return job_title;
+        return this.job_title;
     }
 
     public void setJob_title(String job_title) {
